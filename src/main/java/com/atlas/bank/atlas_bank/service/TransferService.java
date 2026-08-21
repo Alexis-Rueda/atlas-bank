@@ -14,21 +14,21 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TransferService {
-
+public class TransferService implements ITransferService {
     private final AccountRepository accountRepository;
     private final TransactionRepository transactionRepository;
     private final List<FeeCalculator> feeCalculators;
 
+    @Override
     @Transactional
-    public Transaction execute(Long fromId, Long toId, BigDecimal amount) {
-        // Buscar cuentas
+    public Transaction execute(Long fromId, Long toId, BigDecimal amount){
+        //buscar cuentas
         Account from = accountRepository.findById(fromId)
                 .orElseThrow(() -> new RuntimeException("Cuenta origen no encontrada"));
         Account to = accountRepository.findById(toId)
                 .orElseThrow(() -> new RuntimeException("Cuenta destino no encontrada"));
 
-        // Validar que la cuenta esté activa
+        //validar que la cuenta esté activa
         if (!"ACTIVE".equals(from.getStatus())) {
             throw new RuntimeException("La cuenta origen no está activa");
         }
@@ -36,25 +36,26 @@ public class TransferService {
             throw new RuntimeException("La cuenta destino no está activa");
         }
 
-        // Validar fondos
+        //validar los fondos
         if (from.getBalance().compareTo(amount) < 0) {
             throw new RuntimeException("Fondos insuficientes");
         }
 
-        // Calcular comisiones
+        //calcular comisiones
         BigDecimal fee = feeCalculators.stream()
                 .filter(fc -> fc.supports(from.getType()))
                 .findFirst()
                 .orElseThrow( () ->  new RuntimeException("No hay calculador para el tipo " + from.getType()))
                 .calculate(amount);
 
-        // Actualizar saldos
+
+        //actualización de saldos
         from.setBalance(from.getBalance().subtract(amount).subtract(fee));
         to.setBalance(to.getBalance().add(amount));
         accountRepository.save(from);
         accountRepository.save(to);
 
-        // Crear transacción
+        //crear transacción
         Transaction transaction = new Transaction();
         transaction.setType("TRANSFER");
         transaction.setSourceAccountId(fromId);
@@ -64,5 +65,6 @@ public class TransferService {
         transaction.setStatus("EXECUTED");
 
         return transactionRepository.save(transaction);
+
     }
 }
