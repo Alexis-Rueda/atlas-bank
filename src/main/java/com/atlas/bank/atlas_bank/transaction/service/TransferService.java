@@ -1,6 +1,9 @@
 package com.atlas.bank.atlas_bank.transaction.service;
 
+import com.atlas.bank.atlas_bank.account.exception.AccountNotFoundException;
 import com.atlas.bank.atlas_bank.account.model.Account;
+import com.atlas.bank.atlas_bank.transaction.exception.AccountNotActiveException;
+import com.atlas.bank.atlas_bank.transaction.exception.InsufficientFundsException;
 import com.atlas.bank.atlas_bank.transaction.model.Transaction;
 import com.atlas.bank.atlas_bank.account.repository.AccountRepository;
 import com.atlas.bank.atlas_bank.transaction.repository.TransactionRepository;
@@ -24,21 +27,21 @@ public class TransferService implements ITransferService {
     public Transaction execute(Long fromId, Long toId, BigDecimal amount){
         //buscar cuentas
         Account from = accountRepository.findById(fromId)
-                .orElseThrow(() -> new RuntimeException("Cuenta origen no encontrada"));
+                .orElseThrow(() -> new AccountNotFoundException(fromId));
         Account to = accountRepository.findById(toId)
-                .orElseThrow(() -> new RuntimeException("Cuenta destino no encontrada"));
+                .orElseThrow(() -> new AccountNotFoundException(toId));
 
         //validar que la cuenta esté activa
         if (!"ACTIVE".equals(from.getStatus())) {
-            throw new RuntimeException("La cuenta origen no está activa");
+            throw new AccountNotActiveException(fromId, from.getStatus());
         }
         if (!"ACTIVE".equals(to.getStatus())) {
-            throw new RuntimeException("La cuenta destino no está activa");
+            throw new AccountNotActiveException(toId, to.getStatus());
         }
 
         //validar los fondos
         if (from.getBalance().compareTo(amount) < 0) {
-            throw new RuntimeException("Fondos insuficientes");
+            throw new InsufficientFundsException(fromId, from.getBalance(), amount);
         }
 
         //calcular comisiones
