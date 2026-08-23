@@ -7,7 +7,9 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
+@Table(name = "transactions")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Transaction {
@@ -16,18 +18,25 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String type; // DEPOSIT, WITHDRAWAL, TRANSFER
+    @Column(nullable = false, length = 20)
+    private String type;
 
+    @Column(name = "source_account_id")
     private Long sourceAccountId;
 
+    @Column(name = "target_account_id")
     private Long targetAccountId;
 
+    @Column(nullable = false)
     private BigDecimal amount;
 
+    @Column(nullable = false)
     private BigDecimal fee;
 
-    private String status; // PENDING, EXECUTED, REJECTED
+    @Column(nullable = false, length = 20)
+    private String status;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist
