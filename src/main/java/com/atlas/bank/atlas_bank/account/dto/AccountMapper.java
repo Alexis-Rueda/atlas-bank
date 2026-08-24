@@ -9,7 +9,7 @@ public interface AccountMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "status", ignore = true)
-    @Mapping(target = "createAt", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
     Account toEntity(CreateAccountRequest request);
 
     AccountResponse toResponse(Account account);

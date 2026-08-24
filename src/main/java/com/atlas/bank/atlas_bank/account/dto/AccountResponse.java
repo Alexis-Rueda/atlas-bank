@@ -14,5 +14,5 @@ public class AccountResponse {
     private String type; //SAVING, CHECKING
     private BigDecimal balance;
     private String status; //ACTIVE, CLOSED, FROZEN
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 }
