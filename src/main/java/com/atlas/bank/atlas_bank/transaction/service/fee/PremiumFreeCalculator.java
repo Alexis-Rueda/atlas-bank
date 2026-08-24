@@ -6,11 +6,11 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-@Order()
-public class DefaultFeeCalculator implements FeeCalculator{
+@Order(1)
+public class PremiumFreeCalculator implements FeeCalculator{
     @Override
     public boolean supports(String accountType) {
-        return true;
+        return "PREMIUM".equals(accountType);
     }
 
     @Override
