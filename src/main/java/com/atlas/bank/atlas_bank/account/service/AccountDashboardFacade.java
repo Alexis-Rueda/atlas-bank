@@ -32,7 +32,7 @@ public class AccountDashboardFacade {
                 .accountNumber(account.getAccountNumber())
                 .ownerName(account.getOwnerName())
                 .type(account.getType().name())
-                .balance(account.getBalance())
+                .balance(account.getBalance().getAmount())
                 .status(account.getStatus().name())
                 .recentTransactions(transactions)
                 .build();
