@@ -46,6 +46,9 @@ public class Account {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "customer_id", nullable = false)
+    private Long customerId;
+
     @PrePersist
     public void prePersist(){
         this.createdAt = LocalDateTime.now();
