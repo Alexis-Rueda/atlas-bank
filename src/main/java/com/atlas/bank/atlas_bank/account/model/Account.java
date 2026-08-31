@@ -1,6 +1,7 @@
 package com.atlas.bank.atlas_bank.account.model;
 
 import com.atlas.bank.atlas_bank.shared.model.Currency;
+import com.atlas.bank.atlas_bank.shared.model.Email;
 import com.atlas.bank.atlas_bank.shared.model.Money;
 import com.atlas.bank.atlas_bank.transaction.exception.InsufficientFundsException;
 import jakarta.persistence.*;
@@ -25,6 +26,9 @@ public class Account {
     @Column(name = "owner_name", nullable = false)
     private String ownerName;
 
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "email", nullable = false))
+    private Email email;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
@@ -46,7 +50,7 @@ public class Account {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "customer_id")
     private Long customerId;
 
     @PrePersist
