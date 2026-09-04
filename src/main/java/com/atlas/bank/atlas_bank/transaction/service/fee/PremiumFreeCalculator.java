@@ -1,6 +1,6 @@
 package com.atlas.bank.atlas_bank.transaction.service.fee;
 
-import com.atlas.bank.atlas_bank.account.model.AccountType;
+import com.atlas.bank.atlas_bank.domain.model.account.AccountType;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 

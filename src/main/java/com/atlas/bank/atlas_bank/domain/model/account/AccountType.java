@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.account.model;
+package com.atlas.bank.atlas_bank.domain.model.account;
 
 public enum AccountType {
     SAVINGS,

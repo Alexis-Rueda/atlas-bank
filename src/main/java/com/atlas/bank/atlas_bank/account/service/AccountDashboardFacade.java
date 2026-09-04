@@ -1,7 +1,7 @@
 package com.atlas.bank.atlas_bank.account.service;
 
 import com.atlas.bank.atlas_bank.account.dto.DashboardResponse;
-import com.atlas.bank.atlas_bank.account.model.Account;
+import com.atlas.bank.atlas_bank.domain.model.account.Account;
 import com.atlas.bank.atlas_bank.transaction.dto.TransactionMapper;
 import com.atlas.bank.atlas_bank.transaction.dto.TransactionResponse;
 import com.atlas.bank.atlas_bank.transaction.service.ITransactionQueryService;

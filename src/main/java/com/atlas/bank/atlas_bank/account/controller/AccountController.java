@@ -4,7 +4,7 @@ import com.atlas.bank.atlas_bank.account.dto.AccountMapper;
 import com.atlas.bank.atlas_bank.account.dto.AccountResponse;
 import com.atlas.bank.atlas_bank.account.dto.CreateAccountRequest;
 import com.atlas.bank.atlas_bank.account.dto.DashboardResponse;
-import com.atlas.bank.atlas_bank.account.model.Account;
+import com.atlas.bank.atlas_bank.domain.model.account.Account;
 import com.atlas.bank.atlas_bank.account.service.AccountDashboardFacade;
 import com.atlas.bank.atlas_bank.account.service.IAccountService;
 import jakarta.validation.Valid;
