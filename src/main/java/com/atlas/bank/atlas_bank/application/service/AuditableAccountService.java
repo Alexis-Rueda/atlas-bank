@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.account.service;
+package com.atlas.bank.atlas_bank.application.service;
 
 import com.atlas.bank.atlas_bank.domain.model.account.Account;
 import jakarta.annotation.PostConstruct;
@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @Component
 @Primary
-public class AuditableAccountService implements IAccountService{
+public class AuditableAccountService implements IAccountService {
 
     private final IAccountService delegate;
 
