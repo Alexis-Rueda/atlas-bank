@@ -1,6 +1,6 @@
-package com.atlas.bank.atlas_bank.transaction.model.state;
+package com.atlas.bank.atlas_bank.domain.model.transaction.state;
 
-import com.atlas.bank.atlas_bank.transaction.model.TransactionStatus;
+import com.atlas.bank.atlas_bank.domain.model.transaction.TransactionStatus;
 
 public sealed interface TransactionState permits PendingState, ValidatedState,
         ExecutedState, RejectedState, ReversedState{

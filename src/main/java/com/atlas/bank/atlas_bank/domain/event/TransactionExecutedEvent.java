@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.service.event;
+package com.atlas.bank.atlas_bank.domain.event;
 
 import java.math.BigDecimal;
 

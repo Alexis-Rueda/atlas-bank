@@ -1,9 +1,9 @@
 package com.atlas.bank.atlas_bank.shared.exception;
 
 import com.atlas.bank.atlas_bank.domain.exception.AccountNotFoundException;
-import com.atlas.bank.atlas_bank.transaction.exception.AccountNotActiveException;
+import com.atlas.bank.atlas_bank.domain.exception.AccountNotActiveException;
 import com.atlas.bank.atlas_bank.domain.exception.InsufficientFundsException;
-import com.atlas.bank.atlas_bank.transaction.service.exception.FraudCheckException;
+import com.atlas.bank.atlas_bank.domain.exception.FraudCheckException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;

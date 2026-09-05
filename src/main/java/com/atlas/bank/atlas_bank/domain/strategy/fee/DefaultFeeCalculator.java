@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.service.fee;
+package com.atlas.bank.atlas_bank.domain.strategy.fee;
 
 import com.atlas.bank.atlas_bank.domain.model.account.AccountType;
 import org.springframework.core.annotation.Order;

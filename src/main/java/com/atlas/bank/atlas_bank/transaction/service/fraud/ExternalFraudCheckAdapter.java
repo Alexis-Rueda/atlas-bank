@@ -1,6 +1,7 @@
 package com.atlas.bank.atlas_bank.transaction.service.fraud;
 
 import com.atlas.bank.atlas_bank.application.port.out.FraudCheckPort;
+import com.atlas.bank.atlas_bank.domain.model.shared.FraudCheckResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

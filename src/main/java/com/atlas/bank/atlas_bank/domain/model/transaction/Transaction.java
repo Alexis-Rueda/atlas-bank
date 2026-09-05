@@ -1,7 +1,7 @@
-package com.atlas.bank.atlas_bank.transaction.model;
+package com.atlas.bank.atlas_bank.domain.model.transaction;
 
-import com.atlas.bank.atlas_bank.transaction.model.state.*;
-import com.atlas.bank.atlas_bank.transaction.service.event.TransactionExecutedEvent;
+import com.atlas.bank.atlas_bank.domain.model.transaction.state.*;
+import com.atlas.bank.atlas_bank.domain.event.TransactionExecutedEvent;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.domain.AbstractAggregateRoot;

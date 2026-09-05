@@ -4,7 +4,7 @@ import com.atlas.bank.atlas_bank.application.port.in.TransferMoneyUseCase;
 import com.atlas.bank.atlas_bank.transaction.dto.TransactionMapper;
 import com.atlas.bank.atlas_bank.transaction.dto.TransactionResponse;
 import com.atlas.bank.atlas_bank.transaction.dto.TransferRequest;
-import com.atlas.bank.atlas_bank.transaction.model.Transaction;
+import com.atlas.bank.atlas_bank.domain.model.transaction.Transaction;
 import com.atlas.bank.atlas_bank.transaction.service.ITransactionQueryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

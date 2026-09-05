@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.service.fraud;
+package com.atlas.bank.atlas_bank.domain.model.shared;
 
 public record FraudCheckResult(boolean blocked, String reason) {
     public static FraudCheckResult allowed(){

@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.model;
+package com.atlas.bank.atlas_bank.domain.model.transaction;
 
 public enum TransactionType {
     DEPOSIT,

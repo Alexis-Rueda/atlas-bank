@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.exception;
+package com.atlas.bank.atlas_bank.domain.exception;
 
 public class AccountNotActiveException extends RuntimeException {
     public AccountNotActiveException(Long accountId, String status) {
