@@ -1,11 +1,13 @@
 package com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest;
 
+import com.atlas.bank.atlas_bank.application.port.in.CreateAccountUseCase;
+import com.atlas.bank.atlas_bank.application.port.in.GetAccountUseCase;
+import com.atlas.bank.atlas_bank.application.port.in.ListAccountsUseCase;
 import com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest.dto.AccountMapper;
 import com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest.dto.AccountResponse;
 import com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest.dto.CreateAccountRequest;
 import com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest.dto.DashboardResponse;
 import com.atlas.bank.atlas_bank.domain.model.account.Account;
-import com.atlas.bank.atlas_bank.application.service.IAccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +23,9 @@ import java.util.List;
 @Slf4j
 public class AccountController {
 
-    private final IAccountService accountService;
+    private final CreateAccountUseCase createAccountUseCase;
+    private final ListAccountsUseCase listAccountsUseCase;
+    private final GetAccountUseCase getAccountUseCase;
     private final AccountMapper accountMapper;
     private final AccountDashboardFacade dashboardFacade;
 
@@ -34,13 +38,13 @@ public class AccountController {
     public ResponseEntity<AccountResponse> create(@Valid @RequestBody CreateAccountRequest request){
         Account account = accountMapper.toEntity(request);
 
-        Account saved = accountService.create(account);
+        Account saved = createAccountUseCase.create(account);
         return ResponseEntity.status(HttpStatus.CREATED).body(accountMapper.toResponse(saved));
     }
 
     @GetMapping
     public ResponseEntity<List<AccountResponse>> findAll() {
-        List<AccountResponse> responses = accountService.findAll()
+        List<AccountResponse> responses = listAccountsUseCase.findAll()
                 .stream()
                 .map(accountMapper::toResponse)
                 .toList();
@@ -49,6 +53,6 @@ public class AccountController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AccountResponse> findById(@PathVariable Long id){
-        return ResponseEntity.ok(accountMapper.toResponse(accountService.findById(id)));
+        return ResponseEntity.ok(accountMapper.toResponse(getAccountUseCase.findById(id)));
     }
 }
