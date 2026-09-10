@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.account.service;
+package com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest;
 
 import com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest.dto.DashboardResponse;
 import com.atlas.bank.atlas_bank.application.service.IAccountService;

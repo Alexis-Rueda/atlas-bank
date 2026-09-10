@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.shared.exception;
+package com.atlas.bank.atlas_bank.infrastructure.config;
 
 import com.atlas.bank.atlas_bank.domain.exception.AccountNotFoundException;
 import com.atlas.bank.atlas_bank.domain.exception.AccountNotActiveException;
