@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.service.fraud;
+package com.atlas.bank.atlas_bank.infrastructure.adapter.out.fraud;
 
 import com.atlas.bank.atlas_bank.application.port.out.FraudCheckPort;
 import com.atlas.bank.atlas_bank.domain.model.shared.FraudCheckResult;
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Component
 @Slf4j
-public class ExternalFraudCheckAdapter implements FraudChecker, FraudCheckPort {
+public class ExternalFraudCheckAdapter implements FraudCheckPort {
 
     @Override
     public FraudCheckResult check(Long accountId, BigDecimal amount) {

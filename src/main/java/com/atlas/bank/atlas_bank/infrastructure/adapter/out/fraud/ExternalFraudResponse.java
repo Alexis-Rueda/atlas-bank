@@ -1,4 +1,4 @@
-package com.atlas.bank.atlas_bank.transaction.service.fraud;
+package com.atlas.bank.atlas_bank.infrastructure.adapter.out.fraud;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

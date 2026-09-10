@@ -1,6 +1,5 @@
-package com.atlas.bank.atlas_bank.transaction.validation;
+package com.atlas.bank.atlas_bank.infrastructure.adapter.in.rest.dto;
 
-import com.atlas.bank.atlas_bank.transaction.dto.TransferRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
