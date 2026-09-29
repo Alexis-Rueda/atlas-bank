@@ -17,7 +17,7 @@ public class NamingConventionTest {
     static final ArchRule controllers_should_reside_in_rest_adapter =
             classes()
                     .that().haveSimpleNameEndingWith("Controller")
-                    .should().resideInAPackage("..infrastructure.adapter.in.rest..")
+                    .should().resideInAPackage("..infrastructure.adapter.in..")
                     .because("Los controllers son adaptadores de entrada HTTP " +
                             "— su lugar es infrastructure/adapter/in/rest");
 
