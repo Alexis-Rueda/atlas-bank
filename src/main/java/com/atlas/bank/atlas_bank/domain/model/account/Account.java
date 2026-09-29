@@ -1,11 +1,13 @@
 package com.atlas.bank.atlas_bank.domain.model.account;
 
+import com.atlas.bank.atlas_bank.domain.exception.AccountNotActiveException;
 import com.atlas.bank.atlas_bank.domain.exception.InsufficientFundsException;
 import com.atlas.bank.atlas_bank.domain.model.shared.Currency;
 import com.atlas.bank.atlas_bank.domain.model.shared.Email;
 import com.atlas.bank.atlas_bank.domain.model.shared.Money;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter @Setter
@@ -47,5 +49,15 @@ public class Account {
         if (status == null) status = AccountStatus.ACTIVE;
         if (balance == null) balance = Money.zero(Currency.ARS);
         if (createdAt == null) createdAt = LocalDateTime.now();
+    }
+
+    public void close() {
+        if (status != AccountStatus.ACTIVE) {
+            throw new AccountNotActiveException(id, status.name());
+        }
+        if (!(balance.getAmount().compareTo(BigDecimal.ZERO) == 0)) {
+            throw new IllegalStateException("No se puede cerrar una cuenta con saldo");
+        }
+        status = AccountStatus.CLOSED;
     }
 }
