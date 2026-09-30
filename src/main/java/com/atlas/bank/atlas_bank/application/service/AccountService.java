@@ -8,6 +8,7 @@ import com.atlas.bank.atlas_bank.application.port.in.GetAccountUseCase;
 import com.atlas.bank.atlas_bank.application.port.in.ListAccountsUseCase;
 import com.atlas.bank.atlas_bank.application.port.out.AccountRepositoryPort;
 import com.atlas.bank.atlas_bank.domain.event.AccountClosedEvent;
+import com.atlas.bank.atlas_bank.domain.exception.AccountExistsException;
 import com.atlas.bank.atlas_bank.domain.exception.AccountNotFoundException;
 import com.atlas.bank.atlas_bank.domain.model.account.Account;
 import com.atlas.bank.atlas_bank.domain.model.shared.Currency;
@@ -33,6 +34,11 @@ public class AccountService implements CreateAccountUseCase, ListAccountsUseCase
     @Override
     @Transactional
     public Account create(CreateAccountCommand command){
+
+        accountRepository.findByAccountNumber(command.accountNumber()).ifPresent(account -> {
+            throw new AccountExistsException(command.accountNumber());
+        });
+
         Account account = Account.builder()
                 .accountNumber(command.accountNumber())
                 .ownerName(command.ownerName())

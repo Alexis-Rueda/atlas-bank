@@ -33,4 +33,10 @@ public class JpaAccountRepositoryAdapter implements AccountRepositoryPort {
 
         return mapper.toDomain(saved);
     }
+
+    @Override
+    public Optional<Account> findByAccountNumber(String accountNumber) {
+        return accountRepository.findByAccountNumber(accountNumber).map(mapper::toDomain);
+    }
+
 }

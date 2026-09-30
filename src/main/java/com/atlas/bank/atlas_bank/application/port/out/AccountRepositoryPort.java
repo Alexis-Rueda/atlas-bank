@@ -11,4 +11,6 @@ public interface AccountRepositoryPort {
     List<Account> findAll();
 
     Account save(Account account);
+
+    Optional<Account> findByAccountNumber(String accountNumber);
 }

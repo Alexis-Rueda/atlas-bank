@@ -1,9 +1,6 @@
 package com.atlas.bank.atlas_bank.infrastructure.config;
 
-import com.atlas.bank.atlas_bank.domain.exception.AccountNotFoundException;
-import com.atlas.bank.atlas_bank.domain.exception.AccountNotActiveException;
-import com.atlas.bank.atlas_bank.domain.exception.InsufficientFundsException;
-import com.atlas.bank.atlas_bank.domain.exception.FraudCheckException;
+import com.atlas.bank.atlas_bank.domain.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
@@ -41,6 +38,15 @@ public class GlobalExceptionHandler {
                 HttpStatusCode.valueOf(422), ex.getMessage()
         );
         problem.setTitle("Cuenta no activa");
+        return problem;
+    }
+
+    @ExceptionHandler(AccountExistsException.class)
+    public ProblemDetail handleAccountExists(AccountExistsException ex) {
+        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+                HttpStatusCode.valueOf(422), ex.getMessage()
+        );
+        problem.setTitle("Cuenta ya existe");
         return problem;
     }
 
